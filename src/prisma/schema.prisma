@@ -1,0 +1,55 @@
+generator erd {
+  provider = "prisma-erd-generator"
+  theme    = "forest"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+
+model User {
+  id            String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+  firstName     String?
+  lastName      String?
+  username      String
+  email         String   @unique
+  password      String
+  role          Role     @default(USER)
+  access_token  String?
+  refresh_token String?
+  posts         Post[]
+
+  @@map("_users")
+}
+
+enum Role {
+  ADMIN
+  USER
+  DIS
+}
+
+model Post {
+  id           String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+  isPublished  Boolean
+  publlishedAt DateTime?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String
+  title     String
+  content   String?
+  viewCount Int      @default(0)
+}
