@@ -59,6 +59,8 @@ class App {
     // const prisma = new PrismaClient();
     const apolloServer = new ApolloServer({
       schema: schema,
+      // introspection: process.env.NODE_ENV !== 'production',
+      introspection: true,
       plugins: [
         // ApolloServerPluginLandingPageGraphQLPlayground({
         //   // options
@@ -66,6 +68,7 @@ class App {
         process.env.NODE_ENV === 'production'
           ? ApolloServerPluginLandingPageProductionDefault({ footer: false })
           : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+
       ],
       context: async ({ req, res }) => {
         try {
