@@ -6,7 +6,7 @@
         "dir": "../logs"
     },
     "cors": {
-        "origin": ["http://localhost:3000","https://studio.apollographql.com"],
-        "credentials": true
+      "origin": true,
+      "credentials": true
     }
 }

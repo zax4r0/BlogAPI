@@ -56,8 +56,6 @@
     "pg": "^8.7.1",
     "prisma-erd-generator": "^0.8.0",
     "reflect-metadata": "^0.1.13",
-    "type-graphql": "^1.1.1",
-    "typeorm": "^0.2.34",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5"
   },
