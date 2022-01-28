@@ -15,6 +15,7 @@ import { schema } from './schema';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core/dist/plugin/landingPage/graphqlPlayground';
 import prisma from './utils/prisma';
 import { sendrefreshToken } from './utils/token';
+import { ApolloServerPluginLandingPageProductionDefault, ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 
 class App {
   public app: express.Application;
@@ -59,12 +60,12 @@ class App {
     const apolloServer = new ApolloServer({
       schema: schema,
       plugins: [
-        ApolloServerPluginLandingPageGraphQLPlayground({
-          // options
-        }),
-        // process.env.NODE_ENV === 'production'
-        //   ? ApolloServerPluginLandingPageProductionDefault({ footer: false })
-        //   : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+        // ApolloServerPluginLandingPageGraphQLPlayground({
+        //   // options
+        // }),
+        process.env.NODE_ENV === 'production'
+          ? ApolloServerPluginLandingPageProductionDefault({ footer: false })
+          : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
       ],
       context: async ({ req, res }) => {
         try {
