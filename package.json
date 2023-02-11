@@ -87,7 +87,7 @@
     "lint-staged": "^11.0.0",
     "node-config": "^0.0.2",
     "node-gyp": "^8.1.0",
-    "nodemon": "^2.0.9",
+    "nodemon": "^2.0.20",
     "pm2": "^5.1.0",
     "prettier": "^2.3.2",
     "prisma": "^3.7.0",
